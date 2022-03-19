@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="#">
+	<title>Document</title>
+	<link rel="stylesheet" href="calendar.css">
+	<script src="alpine.js" defer></script>
+	<script type="text/javascript" src="calendar.js"></script>
+</head>
+<body>
+	<div class="container" x-data="calendar" x-init="start" onselectstart="return false;" ondragstart="return false;">
+		<div class="calendar" x-show="stage == 'calendar'">
+			<div class="header">
+				<span :class="{'prev': grid.month != today.month}" @click="populateGrid( today.month, today.year)"></span>
+				<h3 x-text="months[grid.month] + ' ' + today.year"> </h3>
+				<span :class="{'next': grid.month == today.month}" @click="populateGrid( today.month +1, today.year)"></span>
+			</div>
+			<div class="weekdays">
+				<template x-for="weekday in weekdays">
+					<span x-text="weekday.short"></span>
+				</template>
+			</div>
+			<div class="days">
+				<template x-for="info in grid.days">
+					<span :class="{ 'disabled': info.disabled,
+						'today': info.today,
+						'selected' : date == info.day && !info.disabled
+					}"
+					x-text="parseDate(info.day)"
+					@click="setDate( info.day, info.disabled )" ></span>
+				</template>
+			</div>
+		</div>
+		<div class="form" x-show="stage == 'form'">
+			<div class="header">
+				<h3> Solicita una videollamada </h3>
+			</div>
+			<div class="info" @click="stage = 'calendar'">
+				<h4 x-text="'Fecha : ' + date + ' / ' + grid.month + ' / ' + grid.year"></h4>
+			</div>
+			<form action="" autocomplete="off">
+				<div class="input-group">
+					<label for="nombre" autofocus >Nombre</label>
+					<input name="nombre" type="text" placeholder="Nombre Completo">
+				</div>
+				<div class="input-group">
+					<label for="Email">Email</label>
+					<input name="Email" type="email" placeholder="Correo Electrónico">
+				</div>
+				<div class="input-group">
+					<label for="celular">Celular</label>
+					<input name="celular" type="text" placeholder="Número de Celular">
+				</div>
+				<div class="input-group">
+					<label for="Asunto">Asunto/label>
+					<input name="Asunto" type="text" placeholder="¿De qué quieres que se trate la videollamada?">
+				</div>
+			</form>
+			<div class="actions">
+				<button @click="stage = 'calendar'" type="button">Volver</button>
+				<button type="submit">Continuar</button>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>

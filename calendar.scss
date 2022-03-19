@@ -1,0 +1,239 @@
+$background : black;
+$color : #00acab;
+$side : 1.5rem;
+$font-size: 1rem;
+$margin-top: -.4rem;
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+
+.container {
+    color: $color;
+}
+
+.calendar {
+    cursor: default;
+    background-color : $background;
+    .header {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 1fr 5fr 1fr;
+        padding : .8rem;
+        border-bottom: 1px solid $color;
+        h3 {
+            text-align: center;
+            font-size : 1.4rem;
+            line-height : 1.6rem;
+            color: lighten($color, 20%)
+        }
+        .next, .prev{
+            display: flex;
+            justify-content: center;
+            cursor: pointer;
+
+        }
+        .next::before{
+            content: '';
+            position: absolute;
+            margin-top: .2rem;
+            border-color: lighten($color, 40%);
+            border-style: solid;
+            border-width: .3rem .3rem 0 0;
+            transform: rotate(45deg);
+            height: .8rem;
+            width: .8rem;
+        }
+        .prev::before{
+            content: '';
+            position: absolute;
+            margin-top: .2rem;
+            border-color: lighten($color, 40%);
+            border-style: solid;
+            border-width: 0 0 .3rem .3rem;
+            transform: rotate(45deg);
+            height: .8rem;
+            width: .8rem;
+        }
+    }
+
+    .weekdays{
+        display: grid;
+        grid-template-columns: repeat( 7, 1fr);
+        span {
+            border-bottom: 1px solid $color;
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+            display: flex;
+            justify-content: center;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+    }
+    .days{
+        display: grid;
+        grid-template-columns: repeat( 7, 1fr);
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        span {
+            padding-top: .8rem;
+            padding-bottom: .8rem;
+            font-size: $font-size;
+            display: flex;
+            justify-content: center;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        span:not(.disabled):hover,{
+            cursor:pointer;
+            color: lighten($color, 40%);
+        }
+        span:not(.disabled):hover::before{
+            content: '';
+            position: absolute;
+            margin-top: $margin-top;
+            border-color: lighten($color, 40%);
+            border-style: solid;
+            border-radius: 100%;
+            border-width: .2rem .2em .2rem .2rem;
+            height: $side;
+            width: $side;
+        }
+        .today {
+            color: lighten($color, 40%);
+        }
+        .today::before {
+            content: '';
+            position: absolute;
+            margin-top: $margin-top;
+            border-color: darken(yellow, 5%);
+            border-style: solid;
+            border-radius: 100%;
+            border-width: .2rem .2em .2rem .2rem;
+            height: $side;
+            width: $side;
+        }
+        .today:hover::before {
+            border-color: lighten(green, 20%) !important;
+
+        }
+        .selected {
+            color: lighten(green, 30%);
+        }
+        .selected::before {
+            content: '';
+            position: absolute;
+            margin-top: $margin-top;
+            border-color: darken(green, 5%);
+            border-style: solid;
+            border-radius: 100%;
+            border-width: .2rem .2em .2rem .2rem;
+            height: $side;
+            width: $side;
+        }
+        .disabled{
+            color: darken($color, 10%);
+            cursor: default;
+        }
+        .disabled:hover{
+            color: darken(red, 30%);
+        }
+        .disabled:hover::before {
+            content: '';
+            position: absolute;
+            margin-top: $margin-top;
+            border-color: darken(red, 30%);
+            border-style: solid;
+            border-radius: 100%;
+            border-width: .2rem .2em .2rem .2rem;
+            height: $side;
+            width: $side;
+        }
+    }
+}
+
+.form {
+    background-color : $background;
+
+    .header {
+        border-bottom: 1px solid $color;
+        display: grid;
+        justify-content: center;
+        padding : .8rem;
+        h3 {
+            font-size : 1.4rem;
+            line-height : 1.6rem;
+            color: lighten($color, 20%);
+        }
+    }
+    .info {
+        cursor: pointer;
+        margin: 1rem 2rem 0 2rem;
+        border: 3px dotted darken($color, 10%);
+        border-radius: 10px;
+        padding: 10px;
+        color: lighten($color, 10%);
+        display: grid;
+        justify-content: center;
+        h4 {
+            text-align: center;
+        }
+    }
+    .info:hover{
+        background-color: lighten($background, 20%);
+        border: 3px dotted lighten($color, 20%);
+    }
+
+    form {
+        padding: 1rem 0 0 0;
+        .input-group {
+            display: grid;
+            justify-content: center;
+            grid-template-columns: 2fr 5fr;
+            padding: .5rem 0 .5rem 1.5rem;
+        }
+        label {
+            box-shadow: 0 0 0 2px $color ;
+            clip-path: inset(0 -15px 0 0);
+            font-weight: bold;
+        }
+        input {
+            $margin: .8rem;
+            border:none;
+            background-color : $background;
+            width: calc(90%);
+            color:  $color;
+            margin-left: $margin;
+        }
+        input::placeholder{
+            color : $color;
+        }
+        input:focus {
+            outline: none;
+        }
+    }
+    .actions {
+        margin-top: 1rem;
+        display: grid;
+        border-top: 1px solid $color;
+        justify-content: center;
+        grid-template-columns: repeat(2, 1fr);
+        button {
+            display: inline-grid;
+            color: $color;
+            background: transparent;
+            font-weight: bold;
+            font-size: 1.2em;
+            padding: .6rem 0 .6rem 0;
+            border:none;
+        }
+        button:first-child {
+            border-right: 1px solid;
+        }
+        button:hover {
+            background-color: lighten($background, 20%);
+        }
+    }
+}

@@ -1,0 +1,313 @@
+* {
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container {
+  color: #00acab;
+}
+
+.calendar {
+  cursor: default;
+  background-color: black;
+}
+
+.calendar .header {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-grid-columns: 1fr 5fr 1fr;
+      grid-template-columns: 1fr 5fr 1fr;
+  padding: .8rem;
+  border-bottom: 1px solid #00acab;
+}
+
+.calendar .header h3 {
+  text-align: center;
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+  color: #13fffe;
+}
+
+.calendar .header .next, .calendar .header .prev {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+
+.calendar .header .next::before {
+  content: '';
+  position: absolute;
+  margin-top: .2rem;
+  border-color: #79fffe;
+  border-style: solid;
+  border-width: .3rem .3rem 0 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  height: .8rem;
+  width: .8rem;
+}
+
+.calendar .header .prev::before {
+  content: '';
+  position: absolute;
+  margin-top: .2rem;
+  border-color: #79fffe;
+  border-style: solid;
+  border-width: 0 0 .3rem .3rem;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  height: .8rem;
+  width: .8rem;
+}
+
+.calendar .weekdays {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[7];
+      grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar .weekdays span {
+  border-bottom: 1px solid #00acab;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.calendar .days {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[7];
+      grid-template-columns: repeat(7, 1fr);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.calendar .days span {
+  padding-top: .8rem;
+  padding-bottom: .8rem;
+  font-size: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.calendar .days span:not(.disabled):hover {
+  cursor: pointer;
+  color: #79fffe;
+}
+
+.calendar .days span:not(.disabled):hover::before {
+  content: '';
+  position: absolute;
+  margin-top: -0.4rem;
+  border-color: #79fffe;
+  border-style: solid;
+  border-radius: 100%;
+  border-width: .2rem .2em .2rem .2rem;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.calendar .days .today {
+  color: #79fffe;
+}
+
+.calendar .days .today::before {
+  content: '';
+  position: absolute;
+  margin-top: -0.4rem;
+  border-color: #e6e600;
+  border-style: solid;
+  border-radius: 100%;
+  border-width: .2rem .2em .2rem .2rem;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.calendar .days .today:hover::before {
+  border-color: #00e600 !important;
+}
+
+.calendar .days .selected {
+  color: #1aff1a;
+}
+
+.calendar .days .selected::before {
+  content: '';
+  position: absolute;
+  margin-top: -0.4rem;
+  border-color: #006700;
+  border-style: solid;
+  border-radius: 100%;
+  border-width: .2rem .2em .2rem .2rem;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.calendar .days .disabled {
+  color: #007978;
+  cursor: default;
+}
+
+.calendar .days .disabled:hover {
+  color: #660000;
+}
+
+.calendar .days .disabled:hover::before {
+  content: '';
+  position: absolute;
+  margin-top: -0.4rem;
+  border-color: #660000;
+  border-style: solid;
+  border-radius: 100%;
+  border-width: .2rem .2em .2rem .2rem;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.form {
+  background-color: black;
+}
+
+.form .header {
+  border-bottom: 1px solid #00acab;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: .8rem;
+}
+
+.form .header h3 {
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+  color: #13fffe;
+}
+
+.form .info {
+  cursor: pointer;
+  margin: 1rem 2rem 0 2rem;
+  border: 3px dotted #007978;
+  border-radius: 10px;
+  padding: 10px;
+  color: #00dfde;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.form .info h4 {
+  text-align: center;
+}
+
+.form .info:hover {
+  background-color: #333333;
+  border: 3px dotted #13fffe;
+}
+
+.form form {
+  padding: 1rem 0 0 0;
+}
+
+.form form .input-group {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-grid-columns: 2fr 5fr;
+      grid-template-columns: 2fr 5fr;
+  padding: .5rem 0 .5rem 1.5rem;
+}
+
+.form form label {
+  -webkit-box-shadow: 0 0 0 2px #00acab;
+          box-shadow: 0 0 0 2px #00acab;
+  -webkit-clip-path: inset(0 -15px 0 0);
+          clip-path: inset(0 -15px 0 0);
+  font-weight: bold;
+}
+
+.form form input {
+  border: none;
+  background-color: black;
+  width: calc(90%);
+  color: #00acab;
+  margin-left: 0.8rem;
+}
+
+.form form input::-webkit-input-placeholder {
+  color: #00acab;
+}
+
+.form form input:-ms-input-placeholder {
+  color: #00acab;
+}
+
+.form form input::-ms-input-placeholder {
+  color: #00acab;
+}
+
+.form form input::placeholder {
+  color: #00acab;
+}
+
+.form form input:focus {
+  outline: none;
+}
+
+.form .actions {
+  margin-top: 1rem;
+  display: -ms-grid;
+  display: grid;
+  border-top: 1px solid #00acab;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+}
+
+.form .actions button {
+  display: -ms-inline-grid;
+  display: inline-grid;
+  color: #00acab;
+  background: transparent;
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: .6rem 0 .6rem 0;
+  border: none;
+}
+
+.form .actions button:first-child {
+  border-right: 1px solid;
+}
+
+.form .actions button:hover {
+  background-color: #333333;
+}
+/*# sourceMappingURL=calendar.css.map */
